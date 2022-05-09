@@ -6,7 +6,7 @@
 }
 body {
     position: relative;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     margin: 0px;
     padding: 0px;
     background-image: url("../images/bg2.png");
@@ -18,5 +18,36 @@ footer {
     position: absolute;
     left: 0;
     bottom: 0;
+    width: 100%;
+}
+
+.contenedor-consulta{
+    width: 100%;
+    height: 60vh;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.ventana-principal{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(67, 131, 91);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login{
+    width: 30%;
+    height: 40vh;
+    background-color: #ffff;
+}
+
+.login button{
     width: 100%;
 }

@@ -6,8 +6,43 @@
 <body>
     <%- include("partials/navigation.html") %>
     <div class="container">
-        <h1>Hola mundo</h1>
-
+        <div class="contenedor-consulta bg-dark">
+            <div class="botonera">
+                <nav class="navbar navbar-light bg-light">
+                    <div class="container-fluid">
+                      <a class="navbar-brand">Interfaz:</a>
+                      <div class="d-grid gap-2 d-md-block">
+                        <button type="button" class="btn btn-secondary">Light</button>
+                        <button type="button" class="btn btn-secondary">Light</button>
+                        <button type="button" class="btn btn-secondary">Light</button>
+                        <button type="button" class="btn btn-secondary">Light</button>
+                        <button type="button" class="btn btn-secondary">Light</button>
+                      </div>
+                      <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="SQL" aria-label="Search">
+                        <button class="btn btn-outline-warning" type="submit"><i class="fas fa-bolt"></i></button>
+                      </form>
+                    </div>
+                  </nav>
+            </div>
+            <div class="ventana-principal">
+                <div class="login rounded">
+                    <form class="">
+                        <div class="form-group mb-3 p-3">
+                            <label for="exampleFormControlInput1" class="form-label">Usuario</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                        </div>
+                        <div class="form-group mb-3 p-3">
+                            <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                        </div>
+                        <div class="form-group mb-3 p-3">
+                            <button type="button" class="btn btn-success">Iniciar sesion</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <%- include("partials/script.html") %>
