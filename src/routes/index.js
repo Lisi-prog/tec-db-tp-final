@@ -7,14 +7,17 @@ const pool = require("../database");
 // const passport = require("passport");
 
 router.get("/", (req, res) => {
+    console.log(req.body);
+    console.log(req.params);
     res.render("index.html");
 });
 
-router.post("/sql", async (req) => {
-    const {ssql} = req.body;
-    console.log(ssql);
-    const sql = await pool.query(ssql);
-    console.log(sql);
+router.post("/sql", async (req, res) => {
+    const {sentenciaSQL} = req.body;
+    console.log(sentenciaSQL);
+    const resultSQL = await pool.query(sentenciaSQL);
+    console.log(resultSQL);
+    res.render("../views/table.html", {resultSQL});
 });
 
 module.exports = router;
