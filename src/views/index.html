@@ -12,8 +12,8 @@
                     <div class="container-fluid">
                       <a class="navbar-brand">Interfaz:</a>
                       <div class="d-grid gap-2 d-md-block">
-                        <button type="button" class="btn btn-secondary">Light</button>
-                        <button type="button" class="btn btn-secondary">Light</button>
+                        <button type="button" class="btn btn-secondary">Nueva Foja</button>
+                        <button type="button" class="btn btn-secondary">Cargar Foja</button>
                         <button type="button" class="btn btn-secondary">Light</button>
                         <button type="button" class="btn btn-secondary">Light</button>
                         <button type="button" class="btn btn-secondary">Light</button>
@@ -26,6 +26,28 @@
                   </nav>
             </div>
             <div class="ventana-principal">
+                <% if(resultSQL){ %>
+                <div class="container-tabla">
+                    <table class="table text-white" style="text-shadow: 0 0 5px #000;">
+                        <thead>
+                            <% Object.keys(resultSQL[0]).forEach(element => { %> 
+                                <th scope="col"> <%- element; %></th>
+                            <% });%>
+                        </thead>
+                        <tbody>
+                            <% var column = Object.keys(resultSQL[0]);%>
+            
+                            <% resultSQL.forEach(function(resultSQL){ %>
+                            <tr>
+                                <% column.forEach(element => { %> 
+                                    <td> <%- resultSQL[element] %></td>
+                                <% });%>    
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table> 
+            </div>
+            <% } %>
                 <!-- <div class="login rounded">
                     <form class="">
                         <div class="form-group mb-1 p-3">
