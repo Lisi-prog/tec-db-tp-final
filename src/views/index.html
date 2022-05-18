@@ -12,7 +12,7 @@
                     <div class="container-fluid">
                       <a class="navbar-brand">Interfaz:</a>
                       <div class="d-grid gap-2 d-md-block">
-                        <button type="button" class="btn btn-secondary" onclick="cargarFoja();">Nueva Foja</button>
+                        <button type="button" class="btn btn-secondary" onclick="nuevaFoja();">Nueva Foja</button>
                         <button type="button" class="btn btn-secondary" onclick="pruebaUno();">Cargar Foja</button>
                         <button type="button" class="btn btn-secondary">Light</button>
                         <button type="button" class="btn btn-secondary">Light</button>
@@ -25,7 +25,27 @@
                     </div>
                   </nav>
             </div>
-            <div class="ventana-principal">
+            <div class="ventana-principal" id="ven-prin">
+
+                <% if(fojaSQL){ %>
+                <div class="contenedor">
+                    <div class="head">
+                        <nav class="navbar bg-light">
+                            <div class="container-fluid">
+                              <a class="navbar-brand text-black">Nueva Foja</a>
+                              <form method="post" action="newFoja" class="d-flex" role="search">
+                                <input class="form-control me-2" type="search" placeholder="id_obra" aria-label="Search" name="id_obra">
+                                <button class="btn btn-outline-success" type="submit">Buscar</button>
+                              </form>
+                            </div>
+                          </nav>
+                    </div>
+                    <div class="container-tabla">
+
+                    </div>
+                </div>
+                <% }%>
+
                 <% if(resultSQL){ %>
                 <div class="container-tabla">
                     <table class="table text-white" style="text-shadow: 0 0 5px #000;">

@@ -9,7 +9,8 @@ const customerController = require("../controllers/customController");
 
 router.get("/", (req, res) => {
     const resultSQL = null;
-    res.render("index.html", {resultSQL});
+    const fojaSQL = null;
+    res.render("index.html", {resultSQL, fojaSQL});
 });
 
 router.post("/sql", async (req, res) => {
@@ -17,6 +18,13 @@ router.post("/sql", async (req, res) => {
      const resultSQL = await pool.query(sentenciaSQL);
      res.render("index.html", {resultSQL});
 });
+
+router.post("/newFoja", async (req, res) => {
+    const {id_obra} = req.body;
+    const resultSQL = await pool.query("SELECT * FROM Item WHERE id_obra= ?", id_obra);
+    res.render("index.html", {fojaSQL});
+});
+
 
 // const sqlQuery = (req) => {
 //     const {ssql} = req.body;
