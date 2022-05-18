@@ -35,12 +35,13 @@ function nuevaFoja(){
 
     let form = document.createElement("form");
     form.setAttribute("method", "post");
-    form.setAttribute("action","newFoja/");
+    form.setAttribute("action","newFoja");
     form.setAttribute("class","d-flex");
 
     let input = document.createElement("input");
     input.setAttribute("class","form-control me-2");
     input.setAttribute("placeholder","id_obra");
+    input.setAttribute("name","id_obra");
 
     let button = document.createElement("button");
     button.setAttribute("class","btn btn-outline-success");

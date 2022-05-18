@@ -28,7 +28,7 @@
             <div class="ventana-principal" id="ven-prin">
 
                 <% if(fojaSQL){ %>
-                <div class="contenedor">
+                
                     <div class="head">
                         <nav class="navbar bg-light">
                             <div class="container-fluid">
@@ -41,9 +41,26 @@
                           </nav>
                     </div>
                     <div class="container-tabla">
-
+                        <table class="table text-white" style="text-shadow: 0 0 5px #000;">
+                            <thead>
+                                <% Object.keys(fojaSQL[0]).forEach(element => { %> 
+                                    <th scope="col"> <%- element; %></th>
+                                <% });%>
+                            </thead>
+                            <tbody>
+                                <% var column = Object.keys(fojaSQL[0]);%>
+                
+                                <% fojaSQL.forEach(function(fojaSQL){ %>
+                                <tr>
+                                    <% column.forEach(element => { %> 
+                                        <td> <%- fojaSQL[element] %></td>
+                                    <% });%>    
+                                </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
                     </div>
-                </div>
+                
                 <% }%>
 
                 <% if(resultSQL){ %>
