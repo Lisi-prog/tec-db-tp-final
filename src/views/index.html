@@ -12,13 +12,13 @@
                     <div class="container-fluid">
                       <a class="navbar-brand">Interfaz:</a>
                       <div class="d-grid gap-2 d-md-block">
-                        <button type="button" class="btn btn-secondary">Nueva Foja</button>
-                        <button type="button" class="btn btn-secondary">Cargar Foja</button>
+                        <button type="button" class="btn btn-secondary" onclick="cargarFoja();">Nueva Foja</button>
+                        <button type="button" class="btn btn-secondary" onclick="pruebaUno();">Cargar Foja</button>
                         <button type="button" class="btn btn-secondary">Light</button>
                         <button type="button" class="btn btn-secondary">Light</button>
                         <button type="button" class="btn btn-secondary">Light</button>
                       </div>
-                      <form method="POST" action="/sql" class="d-flex">
+                      <form method="post" action="sql" class="d-flex">
                         <input class="form-control me-2" type="text" placeholder="SQL" aria-label="Search" name="sentenciaSQL">
                         <button class="btn btn-outline-warning" type="submit"><i class="fas fa-bolt"></i></button>
                       </form>

@@ -6,7 +6,9 @@ const morgan = require("morgan");
 const passport = require("passport");
 const session = require("express-session");
 const flash = require("connect-flash");
-
+// const mysql = require("mysql");
+// const myConnection = require("express-myconnection");
+// const {database} = require("./keys");
 
 //Connect to server
 
@@ -24,6 +26,7 @@ app.set("view engine", "ejs");
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+// app.use(myConnection(mysql, database, "single"));
 
 //Routes
 app.use(require("./routes/index"));
