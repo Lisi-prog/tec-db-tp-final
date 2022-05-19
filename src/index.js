@@ -1,11 +1,11 @@
 const express = require("express");
-
 const app = express();
 const path = require("path");
 const morgan = require("morgan");
 const passport = require("passport");
 const session = require("express-session");
 const flash = require("connect-flash");
+const expressLayouts = require("express-ejs-layouts");
 // const mysql = require("mysql");
 // const myConnection = require("express-myconnection");
 // const {database} = require("./keys");
@@ -21,6 +21,7 @@ app.set("port", process.env.PORT || 3000);
 app.set("views", path.join(__dirname, "views"));
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "ejs");
+app.use(expressLayouts);
 
 //Middlewares
 app.use(morgan("dev"));

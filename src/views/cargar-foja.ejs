@@ -1,0 +1,50 @@
+<div class="head">
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand text-black">Cargar Foja</a>
+            <form method="post" action="newFoja" class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="id_obra" aria-label="Search" name="id_obra">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
+</div>
+<div class="container-tabla">
+    <div class="row g-2 p-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInputGrid" value="Obra de ejemplo" disabled>
+                <label for="floatingInputGrid">Obra</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInputGrid" value="23/03/1995" disabled>
+                <label for="floatingInputGrid">Fecha</label>
+            </div>
+        </div>
+    </div>
+
+    <table class="table text-white text-center" style="text-shadow: 0 0 5px #000;">
+        <thead class="table-dark">
+            <th scope="col">Ord</th>
+            <th>Item</th>
+            <th>AAA</th>
+            <th style="width: 30%;">Avance</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>123</td>
+                <td>ejemplo</td>
+                <td>0,12%</td>
+                <td>
+                    <!-- <input type="text" minlength="1" maxlength="5" style="width: 100%; text-align: center;"> -->
+                    <div class="input-group">
+                        <input type="text" class="form-control" minlength="1" maxlength="5" style="text-align: center;">
+                        <span class="input-group-text" id="basic-addon1">%</span>
+                      </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
