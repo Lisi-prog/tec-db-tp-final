@@ -6,6 +6,7 @@
 }
 body {
     position: relative;
+    height: 100vh;
     /* min-height: 100vh; */
     margin: 0px;
     padding: 0px;
@@ -26,12 +27,12 @@ footer {
     height: 80vh; /*antes 60 */
 }
 
-.container{
+/* .container{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
+} */
 
 .ventana-principal{
     width: 100%;
@@ -60,6 +61,12 @@ footer {
 .container-tabla {
     position: relative;
     width: inherit;
-    height: inherit;
+    height: 60%;
     overflow: auto;
+}
+
+#boton-certi {
+    position: relative;
+    left: 0;
+    bottom: 0;
 }
