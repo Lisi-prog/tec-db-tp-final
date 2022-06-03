@@ -6,7 +6,7 @@ const { redirect, append, render } = require("express/lib/response");
 const pool = require("../database");
 const customerController = require("../controllers/customController");
 // const passport = require("passport");
-const {vistaPrincipal, vistaNuevafoja, vistaCargarfoja} = require("../controllers/pageController");
+const {vistaPrincipal, vistaNuevafoja, vistaCargarfoja, mostrarTabla, itemsFoja, vistaObra} = require("../controllers/pageController");
 const router = express.Router();
 
 router.get("/", vistaPrincipal);
@@ -15,20 +15,11 @@ router.get("/nuevaFoja", vistaNuevafoja);
 
 router.get("/cargarFoja", vistaCargarfoja);
 
-router.post("/sql", async (req, res) => {
-     const {sentenciaSQL} = req.body;
-     const fojaSQL = null;
-     const resultSQL = await pool.query(sentenciaSQL);
-     res.render("index.html", {resultSQL, fojaSQL});
-});
+router.post("/sql", mostrarTabla);
 
-router.post("/newFoja", async (req, res) => {
-    const {id_obra} = req.body;
-    const resultSQL = null;
-    const fojaSQL = await pool.query("SELECT * FROM Item WHERE id_obra= ?", [id_obra]);
-    console.log(fojaSQL);
-    res.render("index.html", {resultSQL, fojaSQL});
-});
+router.post("/newFoja", itemsFoja);
+
+router.get("/obras", vistaObra);
 
 
 // const sqlQuery = (req) => {
@@ -38,4 +29,36 @@ router.post("/newFoja", async (req, res) => {
 //     console.log("hola entro aqui");
 // };
 
+//Mostrar obras
+router.get("/api/obras", (req, res) => {
+    pool.query("SELECT * FROM Obra;", (err, rows) => {
+        if(err){
+            throw err;
+        }else{
+            res.send(rows);
+        }
+    });
+});
+
+//Mostrar obras
+router.get("/api/obrasEmpresa", (req, res) => {
+    pool.query("SELECT o.id_obra, o.nom_obra, o.plazo_mes, e.razon_social FROM Obra AS o inner join Empresa AS e WHERE o.id_empresa = e.id_empresa;", (err, rows) => {
+        if(err){
+            throw err;
+        }else{
+            res.send(rows);
+        }
+    });
+});
+
+//Mostrar obras
+router.get("/api/obras/:id_obra", (req, res) => {
+    pool.query("SELECT * FROM Obra WHERE id_obra = ?;",[req.params.id_obra] , (err, row) => {
+        if(err){
+            throw err;
+        }else{
+            res.send(row);
+        }
+    });
+});
 module.exports = router;

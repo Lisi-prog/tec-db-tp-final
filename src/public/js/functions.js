@@ -73,19 +73,19 @@ function nuevaFoja(){
     }
 }
 
-{/* <div class="contenedor">
-                    <div class="head">
-                        <nav class="navbar bg-light">
-                            <div class="container-fluid">
-                              <a class="navbar-brand text-black">Nueva Foja</a>
-                              <form method="post" action="newFoja" class="d-flex" role="search">
-                                <input class="form-control me-2" type="search" placeholder="id_obra" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Buscar</button>
-                              </form>
-                            </div>
-                          </nav>
-                    </div>
-                    <div class="container-tabla">
 
-                    </div>
-</div> */}
+function verObras() {
+    var url = "http://localhost:3000/api/obrasEmpresa";
+    $('#tablaObras').DataTable({            
+        "ajax":{
+            "url": url,
+            "dataSrc":""
+        },
+        "columns":[
+            {"data":"id_obra"},
+            {"data":"nom_obra"},
+            {"data":"plazo_mes"},
+            {"data":"razon_social"},
+        ],
+    });
+};

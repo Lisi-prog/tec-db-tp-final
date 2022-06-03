@@ -6,6 +6,7 @@ const passport = require("passport");
 const session = require("express-session");
 const flash = require("connect-flash");
 const expressLayouts = require("express-ejs-layouts");
+const cors = require("cors");
 // const mysql = require("mysql");
 // const myConnection = require("express-myconnection");
 // const {database} = require("./keys");
@@ -26,6 +27,7 @@ app.use(expressLayouts);
 //Middlewares
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({extended: false}));
 // app.use(myConnection(mysql, database, "single"));
 
