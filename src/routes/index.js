@@ -6,7 +6,7 @@ const { redirect, append, render } = require("express/lib/response");
 const pool = require("../database");
 const customerController = require("../controllers/customController");
 // const passport = require("passport");
-const {vistaPrincipal, vistaNuevafoja, vistaCargarfoja, mostrarTabla, itemsFoja, vistaObra} = require("../controllers/pageController");
+const {vistaPrincipal, vistaNuevafoja, vistaCargarfoja, mostrarTabla, itemsFoja, vistaObra, vistaCertiPago, vistaCertiObra, vistaMontoObra, vistaAvanceObra} = require("../controllers/pageController");
 const router = express.Router();
 
 router.get("/", vistaPrincipal);
@@ -21,6 +21,13 @@ router.post("/newFoja", itemsFoja);
 
 router.get("/obras", vistaObra);
 
+router.get("/certiPago", vistaCertiPago);
+
+router.get("/certiObra", vistaCertiObra);
+
+router.get("/montoObra", vistaMontoObra);
+
+router.get("/avanceObra", vistaAvanceObra);
 
 // const sqlQuery = (req) => {
 //     const {ssql} = req.body;

@@ -1,35 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <%- include("partials/head.html") %>
-</head>
-<body>
-    <%- include("partials/navigation.html") %>
-    
-    <div class="container-fluid">
-                <nav class="navbar navbar-light bg-light">
-                      <a class="navbar-brand">Interfaz:</a>
-                      <div class="d-grid gap-2 d-md-block">
-                        <button type="button" class="btn btn-secondary">Nueva Foja</button>
-                        <button type="button" class="btn btn-secondary" onclick="location.href='/cargarFoja'">Cargar Foja</button>
-                        <button type="button" class="btn btn-secondary" onclick="location.href='/obras'">Obras</button>
-                        <button type="button" class="btn btn-secondary">Certificados</button>
-                        <button type="button" class="btn btn-secondary" onclick="verObras();">Light</button>
-                      </div>
-                      <form method="post" action="sql" class="d-flex">
-                        <input class="form-control me-2" type="text" placeholder="SQL" aria-label="Search" name="sentenciaSQL">
-                        <button class="btn btn-outline-warning" type="submit"><i class="fas fa-bolt"></i></button>
-                      </form>
-                  </nav>
-            
-            <div class="ventana-principal" id="ven-prin">
-                <%- body %>
-            </div>
-        
-    </div>
 
-    <%- include("partials/footer.html") %>
-    <%- include("partials/script.html") %>
+<head>
+  <%- include("partials/head.html") %>
+</head>
+
+<body>
+  <%- include("partials/navigation.html") %>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <%- body %>
+      </div>
+    </div>
+  </div>
     
+
+  <%- include("partials/footer.html") %>
+  <%- include("partials/script.html") %>
+
 </body>
+
 </html>

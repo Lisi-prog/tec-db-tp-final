@@ -6,7 +6,7 @@ const vistaPrincipal = (req, res) => {
 };
 
 const vistaNuevafoja = (req, res) => {
-    res.render("nueva-foja");
+    res.render("nuevaFoja");
 };
 
 const vistaObra = (req, res) => {
@@ -14,9 +14,23 @@ const vistaObra = (req, res) => {
 };
 
 const vistaCargarfoja = async (req, res) =>  {
-    // const fojaSQL = await pool.query("SELECT * FROM Item WHERE id_obra= 9963");
-    // res.render("cargar-foja", {fojaSQL});
     res.render("cargar-foja");
+};
+
+const vistaCertiPago = async (req, res) =>  {
+    res.render("certiPago");
+};
+
+const vistaCertiObra = async (req, res) =>  {
+    res.render("certiObra");
+};
+
+const vistaMontoObra = async (req, res) =>  {
+    res.render("montoObra");
+};
+
+const vistaAvanceObra = async (req, res) =>  {
+    res.render("avanceObra");
 };
 
 const mostrarTabla = async (req, res) => {
@@ -39,5 +53,9 @@ module.exports = {
     vistaCargarfoja,
     mostrarTabla,
     itemsFoja,
-    vistaObra
+    vistaObra,
+    vistaCertiPago,
+    vistaCertiObra,
+    vistaMontoObra,
+    vistaAvanceObra
 }
