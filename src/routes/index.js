@@ -29,12 +29,6 @@ router.get("/montoObra", vistaMontoObra);
 
 router.get("/avanceObra", vistaAvanceObra);
 
-// const sqlQuery = (req) => {
-//     const {ssql} = req.body;
-//     console.log(ssql);
-//     document.ge
-//     console.log("hola entro aqui");
-// };
 
 //Mostrar obras
 router.get("/api/obras", (req, res) => {
@@ -68,4 +62,38 @@ router.get("/api/obras/:id_obra", (req, res) => {
         }
     });
 });
+
+//Mostrar avance de obras
+router.get("/api/avanceObra", (req, res) => {
+    pool.query("SELECT id_obra, NOM_OBRA, Avance_obra_porcentaje(id_obra) AS avance FROM Obra;", (err, rows) => {
+        if(err){
+            throw(err);
+        }else{
+            res.send(rows);
+        }
+    });
+});
+
+//nueva foja
+router.get("/api/nuevaFoja", (req, res) => {
+    pool.query("SELECT id_obra, NOM_OBRA, Avance_obra_porcentaje(id_obra) AS avance FROM Obra;", (err, rows) => {
+        if(err){
+            throw(err);
+        }else{
+            res.send(rows);
+        }
+    });
+});
+
+//Mostrar obras
+router.get("/api/foja/:id_obra", (req, res) => {
+    pool.query("select o.nom_obra, i.den_item, f.id_foja, DATE_FORMAT( f.fecha_foja,  '%d-%m-%Y' ) as fecha, fd.id_item , fd.ava_acu_ant , fd.ava_actual  from Foja as f inner join Foja_det as fd inner join Obra as o inner join Item as i where f.id_obra = ? and f.id_foja = fd.id_foja and o.id_obra = ? and fd.id_item = i.id_item and i.id_obra = ?;",[req.params.id_obra, req.params.id_obra, req.params.id_obra] , (err, row) => {
+        if(err){
+            throw err;
+        }else{
+            res.send(row);
+        }
+    });
+});
+
 module.exports = router;
