@@ -1,5 +1,4 @@
 
-
 function cargarFoja(){
     // const ventana = document.getElementById("ventana-principal");
     // const result = await pool.query("select * from Empresa;");
@@ -90,7 +89,7 @@ function verObras() {
     });
 };
 
-function prueba(){
+function avanceDeObra(){
     fetch('http://localhost:3000/api/avanceObra')
     .then(result => result.json())
     .then((output) => {
@@ -110,7 +109,7 @@ function prueba(){
     }).catch(err => console.error(err));
 }
 
-function prueba1(){
+function obrasEmpresa(){
     fetch('http://localhost:3000/api/obrasEmpresa')
     .then(result => result.json())
     .then((output) => {
@@ -131,7 +130,7 @@ function prueba1(){
     }).catch(err => console.error(err));
 }
 
-function prueba2(){
+function obras(){
     fetch('http://localhost:3000/api/obrasEmpresa')
     .then(result => result.json())
     .then((output) => {
@@ -144,7 +143,7 @@ function prueba2(){
                 <td> ${item.id_obra} </td>
                 <td> ${item.nom_obra} </td>
                 <td> ${item.razon_social} </td>
-                <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <td><input class="form-check-input" type="checkbox" value="${item.id_obra}" id="flexCheckDefault">
                 </td>
             </tr>
             `
@@ -153,9 +152,7 @@ function prueba2(){
     }).catch(err => console.error(err));
 }
 
-function prueba3(id_obra){
-    // var hul = $('#idobratxt').val(); //document.querySelector("#idobratxt").value;
-    // console.log(hul);
+function fojaDeObra(id_obra){
     fetch('http://localhost:3000/api/foja/' + id_obra)
     .then(result => result.json())
     .then((output) => {
@@ -170,12 +167,12 @@ function prueba3(id_obra){
         for(let item of output){
             res.innerHTML += `
             <tr>
-                <td>${item.id_item}</td>
+                <td class="orden">${item.id_item}</td>
                 <td>${item.den_item}</td>
                 <td>${item.ava_acu_ant}</td>
                 <td>
                     <div class="input-group">
-                        <input type="text" class="form-control" minlength="1" maxlength="5" style="text-align: center;">
+                        <input type="text" class="form-control inpuTT" minlength="1" maxlength="5" style="text-align: center;" value="${item.ava_actual}">
                         <span class="input-group-text" id="basic-addon1">%</span>
                       </div>
                 </td>
@@ -183,6 +180,12 @@ function prueba3(id_obra){
             `
             if(b == 0){
                 res2.innerHTML += `
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" class="form-control form-idobra" id="floatingInputGrid" value="${item.id_obra}" disabled>
+                            <label for="floatingInputGrid">Nº</label>
+                        </div>
+                    </div>
                     <div class="col-md">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="floatingInputGrid" value="${item.nom_obra}" disabled>
@@ -191,7 +194,13 @@ function prueba3(id_obra){
                     </div>
                     <div class="col-md">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGrid" value="${item.fecha}" disabled>
+                            <input type="text" class="form-control form-id" id="floatingInputGrid" value="${item.id_foja}" disabled>
+                            <label for="floatingInputGrid">Foja nº</label>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input type="text" class="form-control form-fecha" id="floatingInputGrid" value="${item.fecha}" disabled>
                             <label for="floatingInputGrid">Fecha</label>
                         </div>
                     </div>
@@ -203,28 +212,165 @@ function prueba3(id_obra){
     }).catch(err => console.error(err));
 }
 
-function mostrarID(){
-    let valor = document.querySelector("#idobratxt").value;
-    prueba3(valor);
+function certixPago(id_obra, id_certi_pago){
+    fetch('http://localhost:3000/api/certipago/' + id_obra + "/" + id_certi_pago)
+    .then(result => result.json())
+    .then((output) => {
+        let res = document.querySelector("#res");
+        res.innerHTML = "";
+
+        for(let item of output){
+            res.innerHTML += `
+            <tr>
+                <td>${item.nro_cert}</td>
+                <td>${item.id_obra}</td>
+                <td>${item.fecha}</td>
+                <td>${item.estado}</td>
+                <td>
+                    <button type="button" class="btn btn-info"><i class="fas fa-arrow-circle-up"></i></button>
+                </td>
+            </tr>
+            `
+        }
+        
+    }).catch(err => console.error(err));
 }
 
+function certixObra(id_obra, id_certi_pago){
+    fetch('http://localhost:3000/api/certiobra/' + id_obra + "/" + id_certi_pago)
+    .then(result => result.json())
+    .then((output) => {
+        let res = document.querySelector("#res");
+        res.innerHTML = "";
 
+        for(let item of output){
+            res.innerHTML += `
+            <tr>
+                <td>${item.nro_cert_obra}</td>
+                <td>${item.id_foja}</td>
+                <td>
+                    <button type="button" class="btn btn-info" onclick="location.href='/certiDeObra/${id_obra}/${item.id_foja}'"><i class="fas fa-arrow-circle-up"></i></button>
+                </td>
+            </tr>
+            `
+        }
+        
+    }).catch(err => console.error(err));
+}
+
+function mostrarID(){
+    let valor = document.querySelector("#idobratxt").value;
+    fojaDeObra(valor);
+}
+
+function mostrarCerti(){
+    let idobra = document.querySelector("#idobratxt").value;
+    let idcertip = document.querySelector("#idcertipagotxt").value;
+    certixPago(idobra, idcertip);
+}
+
+function mostrarCertiObra(){
+    let idobra = document.querySelector("#idobratxt").value;
+    let idcertip = document.querySelector("#idcertipagotxt").value;
+    certixObra(idobra, idcertip);
+}
+
+function montoObrasRedet(){
+    fetch('http://localhost:3000/api/montoObras')
+    .then(result => result.json())
+    .then((output) => {
+        let res = document.querySelector("#res");
+        res.innerHTML = "";
+
+        for(let item of output){
+            res.innerHTML += `
+            <tr>
+                <td> ${item.id_obra} </td>
+                <td> ${item.nom_obra} </td>
+                <td> ${item.fecha} </td>
+                <td> ${item.basico} </td>
+                <td> ${item.redet1} </td>
+                <td> ${item.redet2} </td>
+                <td> ${item.redet3} </td>
+            </tr>
+            `
+        }
+        
+    }).catch(err => console.error(err));
+}
+
+function ventanaSecundaria(URL){
+    window.open(URL, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=300,width=800,height=500");
+}
+
+function obtenerTabla(){
+    // let tabla = document.getElementById("tablaNuevaFoja");
+    // console.log(tabla.rows[1].cells[3]);
+
+    // Obtener checkbox por clase y solo los marcados
+    let inputs = document.querySelectorAll('.form-check-input:checked');
+    if(inputs.length == 0) {
+        console.log('Debes seleccionar al menos una obra');
+        // Salir de la función
+        return;
+    }
+    // Aquí haces lo que debas hacer con cada checkbox
+    alert("CREACION EXITOSA");
+    inputs.forEach(input => {
+        console.log(input.value);
+        $.post("/nuevasFojas",{ id_obra: input.value});
+    });
+}
+
+function guardarFoja(){
+    let orden = document.querySelectorAll('.orden');
+    let inputs = document.querySelectorAll('.inpuTT');
+    let idFoja = document.querySelector('.form-id');
+    if(inputs.length == 0) {
+        console.log('Debes seleccionar al menos una obra');
+        // Salir de la función
+        return;
+    }
+    // Aquí haces lo que debas hacer con cada checkbox
+    // alert("CREACION EXITOSA");
+    for(let i=0; i<orden.length; i++){
+        input = orden[i];
+        input2 = inputs[i];
+        $.post("/cargarFojas",{ id_item: input.innerHTML, ava_actual: input2.value, idFoja: idFoja.value});
+    }
+}
+
+function certificar(){
+    let idFoja = document.querySelector('.form-id');
+    let idObra = document.querySelector('.form-idobra');
+    let fecha = document.querySelector('.form-fecha');
+    let fecha1 = fecha.value.split("-").reverse().join("-");
+    $.post("/certificar", {idFoja: idFoja.value, idObra: idObra.value, fecha: fecha1});  
+}
+
+function verCertiDeObra(){
+    $.post("/certiDeObra");
+}
 
 $(document).ready(function(){
     let bandera = document.querySelector("#tablaAvance");
     if (bandera != null) {
-        prueba();
+        avanceDeObra();
     }
 
     let bandera1 = document.querySelector("#tablaObras");
     if (bandera1 != null) {
-        prueba1();
+        obrasEmpresa();
     }
 
     let bandera2 = document.querySelector("#tablaNuevaFoja");
     if (bandera2 != null) {
-        prueba2();
+        obras();
     }
 
+    let bandera3 = document.querySelector("#tablaMontoObras");
+    if (bandera3 != null) {
+        montoObrasRedet();
+    }
 }   
 );
